@@ -1,15 +1,14 @@
 import sys
 import os
-import shutil
 import cv2
 import pytesseract
-from PIL import Image
-import numpy as np
+
+
 
 '''
 - Getting the Input file path from user
 - language will be defined in "lang.ini" file in the same path of input files.
-- language code should be three digit iso code
+- language code should be three digit iso code, multiple language should be add by separation of "+" symbol. e.g.: eng+hin
 - Tesseract version 5 should be installed in "C:\Program Files\Tesseract-OCR"
 '''
 
@@ -30,7 +29,7 @@ for fname in os.listdir(filepath):
     path = os.path.join(filepath, fname) 
     print(path)
     pytesseract.pytesseract.tesseract_cmd=r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-    img = cv2.imread(path)  # load the image from specified path
+    img = cv2.imread(path)  # load the image from the path using OpenCV library
     langu = filepath + "lang.ini"
     with open(langu) as f:   # open the ini file
         ini = f.read()       # read the ini file
